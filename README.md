@@ -60,7 +60,7 @@ if you use ```require.js```, the demo become
 ```shell
 git clone https://github.com/huyinghuan/jquery-honey-pagination.git pagination
 cd pagination
-bower install
+bower install jquery.honey.pagination
 ```
 and open ```index.html``` see the demo
 
