@@ -118,6 +118,20 @@ pager.goto({pageIndex: 2})
 pager.goto({pageIndex: 2, pageCount: 45})
 ```
 
+## Style.
+
+the pagiantion structor is:
+```html
+<ul class="honey-pagination">
+<li><a href='#'><<</a></li>
+<li class='active'><a href='#'>1</a></li>
+...
+<li class='active'><a href='#'>100</a></li>
+<li><a href='#'>>></a></li>
+</ul>
+```
+
+if you want to change the css style. just override ```.honey-pagination``` or set ```ul``` className by setting.className 
 
 ## Licence
 MIT

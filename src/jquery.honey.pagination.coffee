@@ -146,6 +146,7 @@
       minSuffix: 3 #当前页码靠前时，靠后部分的页码显示多少个
       middle: 5 #当前页面靠中时， 中部页面显示多少个
       maxPage: 15 #在多少个页面内不省写
+      className: 'honey-pagination'
       href: '#'
       pageEllipsis: '...'
       gone: (data)->
