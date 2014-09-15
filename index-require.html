@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link href="pager.css" type="text/css" rel="stylesheet">
+  <script src="bower_components/requirejs/require.js"></script>
+</head>
+<body>
+<div id="test"></div>
+<script>
+  require.config({
+    paths:{
+      jquery: 'bower_components/jquery/jquery'
+    }
+  });
+  require(['lib/jquery.honey.pagination'], function(){
+    $('#test').pagination({pageIndex:12, pageCount: 25})
+  });
+</script>
+</body>
+</html>
