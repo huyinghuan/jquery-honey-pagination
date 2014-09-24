@@ -1,13 +1,35 @@
 jquery.honey.pagination
 ------------
-A plugin for pagination
+A jquery plugin for pagination.
 
-## Fast GettingStart
+## Dependencies
 
-### don't use bower.js
+Jquery
+
+## GettingStart
+### How to install
+#### Install pagination if you know bower.js
+
+```shell
+git clone https://github.com/huyinghuan/jquery-honey-pagination.git pagination
+cd pagination
+bower install jquery.honey.pagination
+```
+and open ```index.html``` see the demo
+
+or open ```index-require.html``` in a http server. (because requirejs need it)
+
+#### Install pagination If you don't know bower.js
 Just download it and import jquery.js and jquery.honey.pagination.js in your html page if you don't have bower.js .
 
-#### Don't have requirejs
+```shell
+git clone https://github.com/huyinghuan/jquery-honey-pagination.git pagination
+```
+you can get it from pagination/lib/jquery.honey.pagination.js
+
+### How to use
+
+#### Usually
 use it like this:
 
 ```html
@@ -28,8 +50,8 @@ use it like this:
 </body>
 </html>
 ```
-#### Use requirejs
-if you use ```require.js```, the demo become
+#### AMD
+If you want load it by requirejs, the demo become
 ```html
 <!DOCTYPE html>
 <html>
@@ -55,45 +77,80 @@ if you use ```require.js```, the demo become
 </html>
 ```
 
-### Use bowerjs
+### Where is Demo?
 
 ```shell
 git clone https://github.com/huyinghuan/jquery-honey-pagination.git pagination
-cd pagination
-bower install jquery.honey.pagination
 ```
-and open ```index.html``` see the demo
 
-or open ```index-require.html``` in a http server. (because requirejs need it)
+```pagination/index.html``` or ```pagination/index-require.html```
 
-## Setting
 
-### Init
+
+## Init
 
 ```
 $(selector).pagination(pageDate, setting)
 ```
 
+
+## Setting
+
+
 ### pageDate
 
 #### pageDate.pageIndex
 
-the current page index.
+
 
 #### pageDate.pageCount
 
-the total page count.
+
 
 ### setting
+#### setting.pageIndex
 
+  the current page index.
+  
+#### setting.pageCount
+
+  the total page count.
+  
 #### setting.prefix
+
+  default is 7
+
 #### setting.suffix
+
+  default is 7
+
 #### setting.minPrefix
+
+  default is 3
+  
 #### setting.minSuffix
+
+  default is 3
+ 
 #### setting.middle
+
+  default is 5
+
 #### setting.maxPage
+
+  default is 15
+
 #### setting.href
+ 
+  default is ```#```
+
 #### setting.pageEllipsis
+
+  default is ```...```
+  
+#### setting.className
+
+  default is ```hhoney-pagination```
 
 #### setting.gone
 a callback. call after click page index.like this:
@@ -109,13 +166,26 @@ function(pageDate){
 ### pager.goto
 
 ```
+pager = $(selector).pagination(setting)
 
-pager = $(selector).pagination(pageDate, setting)
 pager.goto(2)
 //or
 pager.goto({pageIndex: 2})
 //or
 pager.goto({pageIndex: 2, pageCount: 45})
+//or
+pager.pagination('goto', 4)
+//or
+pager.pagination('goto', {pageIndex: 2})
+//or
+pager.pagination('goto' ,{pageIndex: 2, pageCount: 45})
+```
+### Events
+
+```
+pager.on('goto', function(event, data){
+  console.log(data)
+})
 ```
 
 ## Style.
@@ -137,8 +207,14 @@ if you want to change the css style. just override ```.honey-pagination``` or se
 MIT
 
 ## History
+v0.0.2
+
+1. return a jquery object
+2. bind ```goto``` function to pagination
+3. add ```goto``` event
 
 v0.0.1
- finish version 0.0.1
+
+1. finish version 0.0.1
 
 

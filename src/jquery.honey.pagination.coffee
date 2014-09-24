@@ -14,6 +14,10 @@
     data[key] = +value for key, value of data when reg.test value
     return data
 
+  utils.copyObjValue = (source, dest)->
+    source[key] = dest[key] for key, value of source when dest[key]?
+    return source
+
   class Pagination
     ###
     # 接收三个参数，第一个是jquery dom， 分页组件会插入到该dom元素中
@@ -21,10 +25,13 @@
     # 如果没有填写，则默认为1, 1
     # 第三个是可选参数，对于分页的一些设置。json object
     ###
-    constructor: (parentElement, data, setting)->
+    constructor: (parentElement, setting)->
+      @data =
+        pageIndex: 1
+        pageCount: 1
       @parentElement = parentElement
       @setting = setting
-      @data = data
+      utils.copyObjValue @data, setting
       @className = setting.className or "honey-pagination" #分页组件的样式名称
       @generateUI();
 
@@ -60,6 +67,7 @@
           pageIndex = self.getEllipsisIndex($(this))
         self.data.pageIndex =pageIndex
         self.setting.goto && self.setting.goto self.data
+        self.parentElement.trigger 'goto', self.data
         self.generateUI()
 
     #跳转到某页, 接收一个数字表示要跳转的页码。或者接收一个json object对象，包含pageIndex，pageCount
@@ -77,6 +85,7 @@
 
     #生成li 元素
     generateLIElements: (arr)->
+      return '' if arr.length is 0
       @data.pageIndex = @data.pageCount if @data.pageIndex > @data.pageCount
       @data.pageindex = 1 if @data.pageIndex < 1
 
@@ -92,6 +101,7 @@
 
     #生成LI的数据
     generateLIData: ()->
+      return [] if @data.pageCount < 1
       setting = @setting
       prefix = setting.prefix
       suffix = setting.suffix
@@ -128,6 +138,7 @@
 
     #生成ul
     generateULElements: (lis = '')->
+      return '' if lis is ''
       className = @className
       @html = "
         <ul class='#{className}'>
@@ -138,8 +149,17 @@
       "
 
 
-  $.fn.pagination = (pageData, options)->
+  $.fn.pagination = (options, arg...)->
+    self = @
+    #支持方法调用
+    if typeof options is 'string'
+      console.log self[options]
+      self[options].call @, arg[0] if self[options]?
+      return self
+
     defaultSetting =
+      pageCount: 1
+      pageIndex: 1
       prefix: 7 #当前页码靠前时，靠前部分的页码显示多少个
       suffix: 7 #当前页码靠后时，靠后部分的页码显示多少个
       minPrefix: 3 #当前页码靠后时，靠前部分的页面显示多少个
@@ -149,26 +169,18 @@
       className: 'honey-pagination'
       href: '#'
       pageEllipsis: '...'
-      gone: (data)->
-        console.log data
-
-    defaultData =
-      pageCount: 1
-      pageIndex: 1
+      gone: ()->
 
     setting = $.extend defaultSetting, options
-    data = $.extend defaultData, pageData
 
     #转整数
-    utils.coverDataToInteger data
     utils.coverDataToInteger setting
 
-    pager = new Pagination(this, data, setting)
+    pager = new Pagination(@, setting)
 
-    #公开的方法
-    pub =
-      goto: (data)->
-        data = utils.coverDataToInteger data
-        pager.goToPage data
-      _pager_: pager
+    @goto = (data)->
+      data = utils.coverDataToInteger data
+      pager.goToPage data
+
+    return @
 ))

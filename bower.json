@@ -1,11 +1,11 @@
 {
   "name": "jquery-honey-pagination",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "authors": [
     "huyinghuan <ec.huyinghuan@gmail.com>"
   ],
   "description": "a jquery plugin for pagination",
-  "main": "lib/js",
+  "main": "lib/jquery.honey.pagination.js",
   "keywords": [
     "pagination",
     "honey"
