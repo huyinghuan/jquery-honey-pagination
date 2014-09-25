@@ -174,11 +174,11 @@ pager.goto({pageIndex: 2})
 //or
 pager.goto({pageIndex: 2, pageCount: 45})
 //or
-pager.pagination('goto', 4)
+$(selector).pagination('goto', 4)
 //or
-pager.pagination('goto', {pageIndex: 2})
+$(selector).pagination('goto', {pageIndex: 2})
 //or
-pager.pagination('goto' ,{pageIndex: 2, pageCount: 45})
+$(selector).pagination('goto' ,{pageIndex: 2, pageCount: 45})
 ```
 ### Events
 
@@ -207,6 +207,10 @@ if you want to change the css style. just override ```.honey-pagination``` or se
 MIT
 
 ## History
+v0.0.3
+
+1. fix a bug
+
 v0.0.2
 
 1. return a jquery object

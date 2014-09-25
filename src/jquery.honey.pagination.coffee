@@ -71,7 +71,7 @@
         self.generateUI()
 
     #跳转到某页, 接收一个数字表示要跳转的页码。或者接收一个json object对象，包含pageIndex，pageCount
-    goToPage: (data)->
+    goto: (data)->
       data = pageIndex: data if typeof data is 'number'
       @data = $.extend @data, data
       @generateUI()
@@ -153,8 +153,8 @@
     self = @
     #支持方法调用
     if typeof options is 'string'
-      console.log self[options]
-      self[options].call @, arg[0] if self[options]?
+      _pager_ = @data '_pager_'
+      _pager_[options].apply _pager_, arg if _pager_ and _pager_[options]
       return self
 
     defaultSetting =
@@ -177,10 +177,10 @@
     utils.coverDataToInteger setting
 
     pager = new Pagination(@, setting)
-
+    @data '_pager_', pager
     @goto = (data)->
       data = utils.coverDataToInteger data
-      pager.goToPage data
+      pager.goto data
 
     return @
 ))
