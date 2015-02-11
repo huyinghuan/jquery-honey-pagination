@@ -1,11 +1,14 @@
 {
   "name": "jquery-honey-pagination",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "authors": [
     "huyinghuan <ec.huyinghuan@gmail.com>"
   ],
   "description": "a jquery plugin for pagination",
-  "main": "lib/jquery.honey.pagination.js",
+  "main": [
+    "ljquery.honey.pagination.js",
+    "package"
+  ],
   "keywords": [
     "pagination",
     "honey"
@@ -19,7 +22,13 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "src",
+    "index.html",
+    "index-require.html",
+    "package.json",
+    "README.md",
+    "Gruntfile.coffee"
   ],
   "devDependencies": {
     "requirejs": "~2.1.15"

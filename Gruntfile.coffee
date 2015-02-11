@@ -6,7 +6,7 @@ module.exports = (grunt)->
     coffee:
       compile:
         files:
-          'lib/jquery.honey.pagination.js': 'src/jquery.honey.pagination.coffee'
+          'jquery.honey.pagination.js': 'src/jquery.honey.pagination.coffee'
     wiredep:
       options:
         devDependencies: false
