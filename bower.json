@@ -18,6 +18,7 @@
   },
   "license": "MIT",
   "ignore": [
+    ".slow",
     "**/.*",
     "node_modules",
     "bower_components",

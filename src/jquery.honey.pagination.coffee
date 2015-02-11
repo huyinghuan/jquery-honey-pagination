@@ -96,7 +96,8 @@
         clazz = ''
         if index is pageIndex
           clazz = "class='active'"
-        lis.push "<li #{clazz} data-value=#{index}><a href='#{href}#{index}'>#{index}</a></li>"
+        ahref = if @setting.href then "#{href}#{index}" else ""
+        lis.push "<li #{clazz} data-value=#{index}><a href='#{ahref}'>#{index}</a></li>"
       lis.join('')
 
     #生成LI的数据

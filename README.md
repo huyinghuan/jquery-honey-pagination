@@ -90,24 +90,16 @@ git clone https://github.com/huyinghuan/jquery-honey-pagination.git pagination
 ## Init
 
 ```
-$(selector).pagination(pageDate, setting)
+$(selector).pagination(setting)
 ```
 
 
 ## Setting
 
+#### setting.pageIndex
 
-### pageDate
+#### setting.pageCount
 
-#### pageDate.pageIndex
-
-
-
-#### pageDate.pageCount
-
-
-
-### setting
 #### setting.pageIndex
 
   the current page index.
@@ -142,7 +134,7 @@ $(selector).pagination(pageDate, setting)
 
 #### setting.href
  
-  default is ```#```
+  default is ```#```, if href is false then the a link's href is empty string
 
 #### setting.pageEllipsis
 
