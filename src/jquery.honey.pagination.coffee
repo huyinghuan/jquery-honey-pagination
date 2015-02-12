@@ -96,7 +96,7 @@
         clazz = ''
         if index is pageIndex
           clazz = "class='active'"
-        ahref = if @setting.href then "#{href}#{index}" else ""
+        ahref = if href then "#{href}#{index}" else "javascript:void(0)"
         lis.push "<li #{clazz} data-value=#{index}><a href='#{ahref}'>#{index}</a></li>"
       lis.join('')
 
@@ -140,12 +140,18 @@
     #生成ul
     generateULElements: (lis = '')->
       return '' if lis is ''
+      if @setting.href
+        firstHref = "#{@setting.href}1"
+        lastHref = "#{@setting.href}-1"
+      else
+        firstHref = "javascript:void(0)"
+        lastHref = "javascript:void(0)"
       className = @className
       @html = "
         <ul class='#{className}'>
-          <li data-value=1><a href='#'><<</a></li>
+          <li data-value=1><a href='#{firstHref}'><<</a></li>
           #{lis}
-          <li data-value=-1><a href='#'>>></a></li>
+          <li data-value=-1><a href='#{lastHref}'>>></a></li>
         </ul>
       "
 

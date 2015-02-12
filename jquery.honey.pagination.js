@@ -122,7 +122,7 @@
       };
 
       Pagination.prototype.generateLIElements = function(arr) {
-        var clazz, href, index, lis, pageIndex, _i, _len;
+        var ahref, clazz, href, index, lis, pageIndex, _i, _len;
         if (arr.length === 0) {
           return '';
         }
@@ -141,7 +141,8 @@
           if (index === pageIndex) {
             clazz = "class='active'";
           }
-          lis.push("<li " + clazz + " data-value=" + index + "><a href='" + href + index + "'>" + index + "</a></li>");
+          ahref = href ? "" + href + index : "javascript:void(0)";
+          lis.push("<li " + clazz + " data-value=" + index + "><a href='" + ahref + "'>" + index + "</a></li>");
         }
         return lis.join('');
       };
@@ -183,15 +184,22 @@
       };
 
       Pagination.prototype.generateULElements = function(lis) {
-        var className;
+        var className, firstHref, lastHref;
         if (lis == null) {
           lis = '';
         }
         if (lis === '') {
           return '';
         }
+        if (this.setting.href) {
+          firstHref = "" + this.setting.href + "1";
+          lastHref = "" + this.setting.href + "-1";
+        } else {
+          firstHref = "javascript:void(0)";
+          lastHref = "javascript:void(0)";
+        }
         className = this.className;
-        return this.html = "<ul class='" + className + "'> <li data-value=1><a href='#'><<</a></li> " + lis + " <li data-value=-1><a href='#'>>></a></li> </ul>";
+        return this.html = "<ul class='" + className + "'> <li data-value=1><a href='" + firstHref + "'><<</a></li> " + lis + " <li data-value=-1><a href='" + lastHref + "'>>></a></li> </ul>";
       };
 
       return Pagination;
